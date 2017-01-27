@@ -46,6 +46,6 @@ angular.module('mean-factory-interceptor', ['ngCookies'])
   .config(['$httpProvider', '$provide',
     function($httpProvider, $provide) {
       $httpProvider.interceptors.push('httpInterceptor');
-      $httpProvider.interceptors.push('noCacheInterceptor');
+      // $httpProvider.interceptors.push('noCacheInterceptor');
     }
   ]);
