@@ -39,7 +39,7 @@ angular.module('mean.system')
         $timeout(function() {
           _globals = angular.fromJson(localStorage.getItem('globals'));
           deferred.resolve(_globals);
-        }, 1000);
+        }, 0);
 
         return deferred.promise;
       },
