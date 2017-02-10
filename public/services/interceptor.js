@@ -14,6 +14,7 @@ angular.module('mean-factory-interceptor', ['ngCookies'])
           return response || $q.when(response);
         },
         'responseError': function(rejection) {
+          // var isOnLoginRoute = $location.path() === '/api/login';
           if (rejection.status === 401) {
             $log.debug('responseError 401', rejection);
             // This is to set the cookie so that we can redirect back to the proper urL
@@ -24,6 +25,11 @@ angular.module('mean-factory-interceptor', ['ngCookies'])
               $log.log('redirecting to loginPage', $meanConfig.loginPage);
               $location.url($meanConfig.loginPage);
             }
+            return $q.reject(rejection);
+          } if (rejection.status === 404) {
+            $log.debug('responseError 404', rejection);
+            // This is to set the cookie so that we can redirect back to the proper urL
+            $location.url('/404');
             return $q.reject(rejection);
           }
           return $q.reject(rejection);
