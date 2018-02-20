@@ -11,8 +11,8 @@ angular.module('mean.system')
       if (userObj && userObj.roles) {
         globals.authenticated = userObj.roles.length;
         globals.isAdmin = userObj.roles.indexOf('admin') !== -1;
-        globals.user = userObj;
       }
+      globals.user = userObj;
       return globals;
     }
 
