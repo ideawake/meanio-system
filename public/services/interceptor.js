@@ -7,7 +7,7 @@ angular.module('mean-factory-interceptor', ['ngCookies'])
         'response': function(response) {
           if (response.status === 401) {
             $log.debug('response 401', response);
-            if (response.data && response.data.message = 'jwt expired') {
+            if (response.data && response.data.message === 'jwt expired') {
               $log.info('logging user out');
               MeanUser.logout();
             }            
