@@ -15,7 +15,7 @@
     "npm": "3.x"
   },
   "dependencies": {
-    "meanio-circles": "^0.1.x",
+    "meanio-circles": "git://github.com/ideawake/meanio-circles.git#master",
     "serve-favicon": "latest"
   },
   "license": "MIT"
