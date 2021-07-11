@@ -1,14 +1,17 @@
 'use strict';
 
 angular.module('mean-factory-interceptor', ['ngCookies'])
-  .factory('httpInterceptor', ['$q', '$location', '$meanConfig', '$cookies', '$log',
-    function($q, $location, $meanConfig, $cookies, $log) {
+  .factory('httpInterceptor', ['$q', '$location', '$meanConfig', '$cookies', '$log', 'MeanUser',
+    function($q, $location, $meanConfig, $cookies, $log, MeanUser) {
       return {
         'response': function(response) {
           if (response.status === 401) {
             $log.debug('response 401', response);
-            $log.info('redirecting to loginPage', $meanConfig.loginPage);
-            $location.url($meanConfig.loginPage);
+            if (response.data && response.data.message === 'jwt expired') {
+              $log.info('logging user out');
+              MeanUser.logout();
+            }            
+            //$location.url($meanConfig.loginPage);
             return $q.reject(response);
           }
           return response || $q.when(response);
